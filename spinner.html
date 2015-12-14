@@ -1,0 +1,36 @@
+<style>
+	#spinner-loader {
+		z-index: -1;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: -128px 0 0 -64px;
+		width: 128px;
+		height: 128px;
+		line-height: 140px;
+		font-size: 128px;
+		text-align: center;
+		font-family: sans-serif;
+		color: #555;
+	}
+	#spinner-loader.loading {
+		animation: spin 1.0s infinite linear;
+	}
+	#spinner-loader.error {
+		animation: none;
+	}
+	@keyframes spin {
+		100% { transform:rotate(360deg) }
+	}
+</style>
+
+<div tm-loading id="spinner-loader" class="loading">{emoji}</div>
+
+<script>
+	window.addEventListener('error', function () {
+		var el = document.getElementById('spinner-loader');
+		el.innerHTML = '😵';
+		el.className = 'error';
+		return false;
+	})
+</script>
